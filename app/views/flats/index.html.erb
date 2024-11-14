@@ -1,0 +1,46 @@
+<div class="container mt-3 p-5">
+    <div class="row">
+        <div class="col-12">
+            <h1>All our Flats</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <p>All <%= @flats.count %> flats.</p>
+        </div>
+    </div>
+    <div class="row">
+    <% @flats.each do |flat| %>
+        <div class="col-md-4">
+            <div class=" card flat-card">
+                <img class="card-img-top" src= <%= flat.picture_url %>>
+                <div class="flat-card-content px-4">
+                    <div class="card-title">
+                        <h4 class="py-2"><%= flat.name %></h4>
+                    </div>
+                    <p><%= flat.address %></p>
+                    <div class="d-flex">
+                        <div class="flex align-items-center">
+                            <i class="fa-solid fa-people-line"></i>
+                            <span><%= flat.number_of_guests %></span>
+                        </div>
+                        <div class="flex align-items-center ms-3">
+                            <i class="fa-solid fa-euro-sign"></i>
+                            <span><%= flat.price_per_night %></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flat-card-actions d-flex justify-content-between p-4">
+                    <%= link_to "More info", flat_path(flat) %>
+                    <div>
+                      <%= link_to "Edit", edit_flat_path(flat), class: "ms-3 text-warning" %>
+                      <%= link_to "Remove", flat_path(flat), class: "ms-3 text-danger", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
